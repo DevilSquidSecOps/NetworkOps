@@ -47,7 +47,9 @@ except Exception as e:
 time.sleep(3)
 #verify your off vpn by checking your IP
 a = sh.wget('http://ipinfo.io/ip' ,'-qO','-')
-print("Current IP:",a) #this function requires the path to a text files containing one of the nodes and another list of the nodes we created earlier $
+print("Current IP:",a) 
+
+#this function requires the path to a text files containing one of the nodes and another list of the nodes we created earlier $
 def get_next_conn(path,nodes):
     last_conn_list = [] #list to capture our log text file 
     with open(path,'r') as file: #this loop should append each line in our file to the list like saying file = open('log.txt','r') this operation wil$
@@ -70,6 +72,7 @@ def get_next_conn(path,nodes):
     last_connect.write("%s" % (next_conn)) #write the new connection to the file for later reference
     last_connect.close()
     return next_conn #remember to set a variable when calling the function to capture this value
+
 last_conn_log = f'{openvpn_path}/last_connection.txt'
 next_conn = get_next_conn(last_conn_log,US_nodes)
 print(next_conn) #Connect to a PIA VPN node
