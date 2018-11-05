@@ -3,7 +3,7 @@
 nmap -oG network.txt -sS -F 10.10.40.0/24
 #### OS detection with aggressive option using Syn TCP type scan for a target host
 nmap -sS -O --osscan-guess 192.168.1.12/32
-#### Port 80 scan and OS discovery to greppable file
+#### Feed ping scan results for Port 80 scan and OS discovery to new greppable file
 cat ping.grep | awk '{print$2}' | grep -v Nmap | xargs nmap -oG 80-OS.grep -O --osscan-guess -T4 -p 80
 ## Filter Data
 #### Grep for the discovered hosts
