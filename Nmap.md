@@ -1,6 +1,6 @@
 # Nmap Commands
 #### Quick enumeration scan of /24 network with output to grepable ASCII text format
-nmap -oG network.txt -sS -F 10.90.23.0/24
+nmap -oG network.grep -sS -F 10.90.23.0/24
 #### OS detection with aggressive option using Syn TCP type scan for a target host
 nmap -sS -O --osscan-guess 192.168.1.12/32
 #### Service detection of possibly open UDP port
@@ -19,6 +19,8 @@ nmap  --script "snmp-* and not snmp-brute*" -sU -v -p 161 10.10.44.2
 
 
 ## Filter Data
+#### set var for greppable nmap output
+NMAP_FILE=network.grep
 #### Grep for the discovered hosts
 egrep -v "^#|Status: Up" $NMAP_FILE | cut -d' ' -f2
 #### Grep for Discovered OS data from greppable file
