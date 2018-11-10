@@ -3,8 +3,8 @@
 nmap -oG network.grep -sS -F 10.90.23.0/24
 #### OS detection with aggressive option using Syn TCP type scan for a target host
 nmap -sS -O --osscan-guess 192.168.1.12/32
-#### Service detection of possibly open UDP port an TCP port
-  nmap -sV -sU -sS -p U:46878,T:46878 10.10.10.89
+#### Service detection of given UDP/TCP ports with highest version intensity probing
+  nmap -sV --version-intensity 9 -sU -sS -p U:35536,53,161,T:3306,53 10.10.11.89
 
 ## Advanced Commands
 #### Feed ping scan results for Port 80 scan and OS discovery to new greppable file
