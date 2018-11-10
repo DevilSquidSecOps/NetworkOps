@@ -1,10 +1,10 @@
 # Nmap Commands
 #### Quick enumeration scan of /24 network with output to grepable ASCII text format
-nmap -oG network.txt -sS -F 10.10.40.0/24
+nmap -oG network.txt -sS -F 10.90.23.0/24
 #### OS detection with aggressive option using Syn TCP type scan for a target host
 nmap -sS -O --osscan-guess 192.168.1.12/32
 #### Service detection of possibly open UDP port
-  nmap -sV -sU -p U:46878 10.10.10.92
+  nmap -sV -sU -p U:46878 10.10.10.89
 
 ## Advanced Commands
 #### Feed ping scan results for Port 80 scan and OS discovery to new greppable file
@@ -14,7 +14,7 @@ cat ping.grep | awk '{print$2}' | grep -v Nmap | xargs nmap -oG 80-OS.grep -O --
 #### List available nse scripts ie;SNMP
 find / -name snmp*.nse
 #### run all scrips except the brute script ie;SNMP
-nmap  --script "snmp-* and not snmp-brute*" -sU -v -p 161 10.10.10.92
+nmap  --script "snmp-* and not snmp-brute*" -sU -v -p 161 10.10.44.2
 
 
 
