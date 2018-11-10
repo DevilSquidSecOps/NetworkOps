@@ -11,9 +11,10 @@ nmap -sS -O --osscan-guess 192.168.1.12/32
 cat ping.grep | awk '{print$2}' | grep -v Nmap | xargs nmap -oG 80-OS.grep -O --osscan-guess -T4 -p 80
 
 # NSE Scripts
-#### List available nse scripts run all scrips except the brute script ie;SNMP
-  > find / -name snmp*.nse
-  > nmap  --script "snmp-* and not snmp-brute*" -sU -v -p 161 10.10.10.92
+#### List available nse scripts ie;SNMP
+find / -name snmp*.nse
+#### run all scrips except the brute script ie;SNMP
+nmap  --script "snmp-* and not snmp-brute*" -sU -v -p 161 10.10.10.92
 
 
 
