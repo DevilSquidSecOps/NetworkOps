@@ -12,8 +12,8 @@ cat ping.grep | awk '{print$2}' | grep -v Nmap | xargs nmap -oG 80-OS.grep -O --
 
 # NSE Scripts
 #### List available nse scripts run all scrips except the brute script ie;SNMP
-  find / -name snmp*.nse
-  nmap  --script "snmp-* and not snmp-brute*" -sU -v -p 161 10.10.10.92
+  > find / -name snmp*.nse
+  > nmap  --script "snmp-* and not snmp-brute*" -sU -v -p 161 10.10.10.92
 
 
 
