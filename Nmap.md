@@ -27,10 +27,14 @@ egrep -v "^#|Status: Up" $NMAP_FILE | cut -d' ' -f2
 grep "OS:" network.txt | sed 's/Host: //' | sed 's/Ports.\*OS://' | sed 's/Seq.\*$//' | sed 's/(//' | sed 's/)//'
 
 
-**Awk Open ports and pipe to new NMAP scan**
+**Awk/xargs Open ports and pipe to new NMAP scan**
+* Taking a previous scan file(doesn't have to be greppable) and piping open ports to new scan
 * -F " |/" sets the field separator ie; 22/open
 * /open/  on any line that has "open" in it
 * {print $1} print the first field of that line ie; "22" if the line started with 22/open
 * {print \\$NF":"\$4} this would print the last field in the line followed by a colon and then the 4th field
 * ORS="," this replaces the newline chars with a comma putting all ports from an nmap scan into one line separated by commas 
 * {print substr(\\$1, 1, length(\\$1)-1)} choose the line "\\$1, 1," and make it's length the line itself minus one char "length(\\$1)-1)}"
+* -I {} a placeholder for xargs arguments passed in this all open ports in comma separated format to enter into our new nmap scan
+
+awk -F" |/" '/open/ {print $1}' ORS="," scan.nmap | awk '{print substr($1, 1, length($1)-1)}' | xargs -I '{}' nmap -v -sV --version-intensity 9 --script vulners -p {} 10.10.10.11
